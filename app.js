@@ -53,7 +53,9 @@ bot.dialog('orderPizza', [
         }
         
         session.dialogData.pizzaName = pizzaNameEntity.entity;
-        builder.Prompts.text(`${session.dialogData.pizzaName}피자를 주문하시는게 맞나요?`);
+        //builder.Prompts.text(`${session.dialogData.pizzaName}피자를 주문하시는게 맞나요?`);
+        //session.endDialog(`${session.dialogData.pizzaName}를 주문하시는게 맞나요?`);
+        session.endDialog(`${pizzaNameEntity.entity}를 주문하시는게 맞나요?`);
         //builder.Prompts.text(session, "배달은 어디로 해드릴까요?");
         //session.beginDialog('SetDestination');
     }/*,
