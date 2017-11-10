@@ -42,3 +42,34 @@ bot.dialog('help', function (session) {
 }).triggerAction({
     matches: 'help'
 });
+
+bot.dialog('orderPizza', [
+    function (session, args, next) {
+        var pizzaNameEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'PizzaName');
+        if (!pizzaNameEntity) {
+            builder.Prompts.text(session, '피자 종류를 말씀해주세요.');
+        }
+        
+        session.dialogData.pizzaName = pizzaNameEntity.entity;
+
+        builder.Prompts.text(session, "배달은 어디로 해드릴까요?");
+        session.beginDialog('SetDestination');
+    },
+    function (session, results) {
+        console.log("results : " + JSON.stringify(results));
+
+        // results.response : 유저가 입력한 메세지
+
+        session.dialogData.destination = results.response;
+        builder.Prompts.text(session, "\"" + results.response + "\"으로 배달해드리겠습니다. 결제는 어떻게 하시겠어요?");
+    },
+    function (session, results) {
+        session.dialogData.paymentMethod = results.response;
+        builder.Prompts.text(session, "\"" + results.response + "\"으로 결제하겠습니다.");
+    }
+]).triggerAction({
+    matches: 'orderPizza',
+    onInterrupted: function (session) {
+        session.send('피자 종류를 선택해주세요.');
+    }
+});
