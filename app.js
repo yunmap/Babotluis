@@ -40,23 +40,23 @@ var recognizer = new builder.LuisRecognizer(LUIS_MODEL_URL);
 bot.recognizer(recognizer);
 
 bot.dialog('help', function (session) {
-    session.endDialog("피자 주문을 도와드리겠습니다! 어떤 피자를 원하세요? \"치즈 피자 주문하겠습니다\"라고 말씀해주세요.");
+    session.endDialog("피자 주문을 도와드리겠습니다! 어떤 피자를 원하세요? \"○○ 피자 주문하겠습니다\"라고 말씀해주세요.");
 }).triggerAction({
     matches: 'help'
 });
 
 bot.dialog('orderPizza', [
     function (session, args, next) {
-        var pizzaNameEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'PizzaName');
+        var pizzaNameEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'pizzaName');
         if (!pizzaNameEntity) {
             builder.Prompts.text(session, '피자 종류를 말씀해주세요.');
         }
         
         session.dialogData.pizzaName = pizzaNameEntity.entity;
-
-        builder.Prompts.text(session, "배달은 어디로 해드릴까요?");
-        session.beginDialog('SetDestination');
-    },
+        builder.Prompts.text(`${session.dialogData.pizzaName}피자를 주문하시는게 맞나요?`);
+        //builder.Prompts.text(session, "배달은 어디로 해드릴까요?");
+        //session.beginDialog('SetDestination');
+    }/*,
     function (session, results) {
         console.log("results : " + JSON.stringify(results));
 
@@ -68,7 +68,7 @@ bot.dialog('orderPizza', [
     function (session, results) {
         session.dialogData.paymentMethod = results.response;
         builder.Prompts.text(session, "\"" + results.response + "\"으로 결제하겠습니다.");
-    }
+    }*/
 ]).triggerAction({
     matches: 'orderPizza',
     onInterrupted: function (session) {
