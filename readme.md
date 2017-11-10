@@ -1,27 +1,12 @@
-## Use Azure app service editor
+## Microsoft Student Partner, team "BABOT"
+### 2차 세미나 실습 먼저 진행해보기.
 
-1. make code change in the online editor
-
-Your code changes go live as the code changes are saved.
-
-## Use Visual Studio Code
-
-### Build and debug
-1. download source code zip and extract source in local folder
-2. open the source folder in  Visual Studio Code
-3. make code changes
-4. download and run [botframework-emulator](https://emulator.botframework.com/)
-5. connect the emulator to http://localhost:3987
-
-### Publish back
-
+1. node js install
+2. npm init
+3. package 설치 (botbuilder, restify, request, dotenv-extended)
 ```
-npm run azure-publish
+npm install --save ***
 ```
-
-## Use continuous integration
-
-If you have setup continuous integration, then your bot will automatically deployed when new changes are pushed to the source repository.
-
-
-
+4. LUIS publish key를 등록
+5. node app.js 로 local에서 실행
+6. Bot emulator 이용하여 local에서 test
