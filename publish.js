@@ -4,10 +4,10 @@ var fs = require('fs');
 var request = require('request');
 
 var rootFolder = path.resolve('.');
-var zipPath = path.resolve(rootFolder, '../babotluis.zip');
-var kuduApi = 'https://babotluis.scm.azurewebsites.net/api/zip/site/wwwroot';
-var userName = '$babotluis';
-var password = 'oaw4j1XmRlL569XRj2jkRNXDLdnqkWhFE807QmKRpTi9fDaEl2dqQ4JGkjRS';
+var zipPath = path.resolve(rootFolder, '../JiyunBBot.zip');
+var kuduApi = 'https://JiyunBBot.scm.azurewebsites.net/api/zip/site/wwwroot';
+var userName = '$JiyunBBot';
+var password = '3waeTtN3KRoiqfTZR6tEYckc8DykTFYobvtZcorQglhsYtmWWwG2fhzHX98K';
 
 function uploadZip(callback) {
   fs.createReadStream(zipPath).pipe(request.put(kuduApi, {
@@ -45,8 +45,8 @@ function publish(callback) {
 
 publish(function(err) {
   if (!err) {
-    console.log('babotluis publish');
+    console.log('JiyunBBot publish');
   } else {
-    console.error('failed to publish babotluis', err);
+    console.error('failed to publish JiyunBBot', err);
   }
 });
