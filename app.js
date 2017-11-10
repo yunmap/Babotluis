@@ -1,3 +1,4 @@
+require('dotenv-extended').load();
 /*-----------------------------------------------------------------------------
 A simple echo bot for the Microsoft Bot Framework. 
 -----------------------------------------------------------------------------*/
@@ -10,11 +11,12 @@ var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
    console.log('%s listening to %s', server.name, server.url); 
 });
-  
+  //process.env.MicrosoftAppId
+  //process.env.MicrosoftAppPassword
 // Create chat connector for communicating with the Bot Framework Service
 var connector = new builder.ChatConnector({
-    appId: process.env.MicrosoftAppId,
-    appPassword: process.env.MicrosoftAppPassword,
+    appId: null,
+    appPassword: null,
     stateEndpoint: process.env.BotStateEndpoint,
     openIdMetadata: process.env.BotOpenIdMetadata 
 });
