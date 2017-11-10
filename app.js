@@ -40,7 +40,7 @@ var recognizer = new builder.LuisRecognizer(LUIS_MODEL_URL);
 bot.recognizer(recognizer);
 
 bot.dialog('help', function (session) {
-    session.endDialog("피자 주문을 도와드리겠습니다! 어떤 피자를 원하세요? \"○○ 피자 주문하겠습니다\"라고 말씀해주세요.");
+    session.endDialog("피자를 대신 주문해드리는 지봇입니다. \"○○ 피자 주문할래요.\"라고 말해주세용.");
 }).triggerAction({
     matches: 'help'
 });
